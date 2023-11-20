@@ -21,7 +21,7 @@ echo -e "${CIANO}[BOT-Script]:${FIMCIANO} Este script irá instalar automaticame
 echo -e "${CIANO}[BOT-Script]:${FIMCIANO} Deseja continuar? [S/N]"
 read choice
 
-if [ "$choice" == "S" || "$choice" == "s" ]; then
+if [ "$choice" = "S" ] || [ "$choice" = "s" ]; then
 
     # Verificando se o JAVA está instalado e se está atualizado
     if ! command -v java &> /dev/null || ! java --version | grep -q "openjdk 17"; then

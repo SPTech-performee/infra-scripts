@@ -6,7 +6,7 @@ Visualize o JAR Performee e o projeto Performee no seguite link:
 <a href="https://github.com/SPTech-performee/performee-jar">Repositório do JAR Performee.</a>
 
 Visualize o executável Python Performee no seguite link:
-<a href="https://github.com/SPTech-performee/performee-gpu">Repositório do JAR Performee.</a>
+<a href="https://github.com/SPTech-performee/performee-gpu">Repositório executável Python Performee.</a>
 
 👷🏻‍♂️🔨 Desenvolvido por:
   - Bryan da Silva | @BryanSilva117
@@ -22,8 +22,8 @@ Visualize o executável Python Performee no seguite link:
 <br>
 
 <div align="left">
+<img align="center" alt="luigi-shell" height="50" width="60" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/bash/bash-original.svg"/>
   <img align="center" alt="luigi-mysql" height="50" width="60" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg">
-  <img align="center" alt="luigi-shell" height="50" width="60" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/bash/bash-original.svg"/>
 </div>
 
 #

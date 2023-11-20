@@ -12,10 +12,11 @@ echo -e "${CIANO}[BOT-Script]:${FIMCIANO} Este script irá instalar automaticame
 echo -e "${CIANO}[BOT-Script]:${FIMCIANO} Deseja continuar? [S/N]"
 read choice
 
-if [ "$choice" == "S" || "$choice" == "s" ]; then
+if [ "$choice" = "S" ] || [ "$choice" = "s" ]; then
+
     echo -e "${CIANO}[BOT-Script]:${FIMCIANO} Iniciando instalação do docker"
     sudo apt install docker.io
-    echo -e "${VERDE}Docker instalado.${FIMVERDE}"
+    echo -e "${VERDE}Docker instalado.${FIMVERDE}"  
 
     sleep 2
 
@@ -57,4 +58,5 @@ if [ "$choice" == "S" || "$choice" == "s" ]; then
 else
     echo -e "${CIANO}[BOT-Script]:${FIMCIANO} Você não concordou com a instalação. Saindo..."
     exit 0
+    
 fi
