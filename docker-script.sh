@@ -52,11 +52,11 @@ if [ "$choice" = "S" ] || [ "$choice" = "s" ]; then
     sleep 2
 
     echo -e "${CIANO}[BOT-Script]:${FIMCIANO} Executando script JAVA/PYTHON"
-    ./java.sh
+    ./java-python-script.sh
 
     clear
 else
     echo -e "${CIANO}[BOT-Script]:${FIMCIANO} Você não concordou com a instalação. Saindo..."
     exit 0
-    
+
 fi
