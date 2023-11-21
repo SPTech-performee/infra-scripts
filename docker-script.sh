@@ -18,14 +18,14 @@ if [ "$choice" = "S" ] || [ "$choice" = "s" ]; then
     sudo apt install docker.io
     echo -e "${VERDE}Docker instalado.${FIMVERDE}"  
 
-    sleep 15
+    sleep 5
 
     echo -e "${CIANO}[BOT-Script]:${FIMCIANO} Iniciando serviço do docker"
     sudo systemctl start docker
     sudo systemctl enable docker
     echo -e "${VERDE}Docker iniciado.${FIMVERDE}"
 
-    sleep 15
+    sleep 5
 
     echo -e "${CIANO}[BOT-Script]:${FIMCIANO} Baixando a imagem do MySQL 5.7"
     sudo docker pull mysql:5.7
@@ -36,20 +36,20 @@ if [ "$choice" = "S" ] || [ "$choice" = "s" ]; then
     sudo docker run -d -p 3306:3306 --name performee -e "MYSQL_ROOT_PASSWORD=01231153" mysql:5.7
     echo -e "${VERDE}Container criado.${FIMVERDE}"
 
-    sleep 15
+    sleep 5
 
     echo -e "${CIANO}[BOT-Script]:${FIMCIANO} Executando script SQL"
-    sudo docker exec -i performee mysql -u root -p 01231153 < /home/ubuntu/infra-scripts/Performee-script.sql
+    sudo docker exec -i performee mysql -u root -p01231153 < ./Performee-script.sql
     echo -e "${VERDE}Script SQL executado.${FIMVERDE}"
 
-    sleep 15
+    sleep 5
     clear
 
     echo -e "${CIANO}[BOT-Script]:${FIMCIANO} Dando permissão para executar o script JAVA/PYTHON"
     chmod +x java-python-script.sh
     echo -e "${VERDE}Permissão concedida.${FIMVERDE}"
 
-    sleep 15
+    sleep 5
 
     echo -e "${CIANO}[BOT-Script]:${FIMCIANO} Executando script JAVA/PYTHON"
     ./java-python-script.sh

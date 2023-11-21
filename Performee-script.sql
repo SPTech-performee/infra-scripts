@@ -96,7 +96,7 @@ foreign key (fkServidor) references Servidor(ipServidor),
 primary key pkComponente(idComponente, fkEmpresa, fkDataCenter, fkServidor)
 );
 
-create table leitura (
+create table Leitura (
 idLeitura int auto_increment,
 dataLeitura datetime,
 emUso double,
@@ -120,7 +120,7 @@ primary key pkLeitura(idLeitura, fkEmpresa, fkDataCenter, fkServidor, fkComponen
 );
 
 
-create table alerta (
+create table Alerta (
 idAlerta int auto_increment,
 dataAlerta datetime,
 tipo varchar(50), constraint chkTipoAlerta check (tipo in ('Estável', 'Cuidado', 'Em risco')),
@@ -138,7 +138,7 @@ foreign key (fkLeitura) references Leitura(idLeitura),
 primary key pkAlerta(idAlerta, fkEmpresa, fkDataCenter, fkServidor, fkComponente, fkLeitura)
 );
 
-insert into permissao values
+insert into Permissao values
 (null, 'Master'),
 (null, 'Expert'),
 (null, 'Guest');
@@ -149,6 +149,6 @@ insert into Administrador values
 insert into Empresa values
   (null, 'São Paulo Tech School', 'EDUCARE', 58891507000162, 'sptech@sptech.school', 9876543210);
 
-insert into usuario values
+insert into Usuario values
 (null, "Cleber Ferreira", "cleber@sptech.school", "cleber123", "12591913030", "Diretor Analytic and Development squad", 1, 2),
 (null, "Carolina Maria Socorro", "carol@sptech.school", "carol123", "37068246044", "Analista Junior", 1, 3);

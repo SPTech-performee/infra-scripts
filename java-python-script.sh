@@ -26,29 +26,29 @@ if [ "$choice" = "S" ] || [ "$choice" = "s" ]; then
     # Verificando se o JAVA está instalado e se está atualizado
     if ! command -v java &> /dev/null || ! java --version | grep -q "openjdk 17"; then
         echo -e "${CIANO}[BOT-Script]:${FIMCIANO} JAVA não encontrado ou desatualizado."
-        sleep 15
+        sleep 5
         sudo add-apt-repository ppa:linuxuprising/java -y
         echo "Atualizando os pacotes."
-        sleep 15
+        sleep 5
         sudo apt update -y
 
         echo "Instalando o JAVA."
-        sleep 15
+        sleep 5
         sudo apt-get install openjdk-17-jdk -y
         echo "Java 17 instalado! Atualizando..."
-        sleep 15
+        sleep 5
         sudo apt update && sudo apt upgrade -y
     else
         echo -e "${CIANO}[BOT-Script]:${FIMCIANO} Máquina possui o JAVA."
     fi
 
-    sleep 15
+    sleep 5
     clear
 
     # Verificar se o JAR está instalado
     if [ ! -f "$jar" ]; then
         echo -e "${CIANO}[BOT-Script]:${FIMCIANO} JAR não encontrado. Iniciando sua instalação..."
-        sleep 15
+        sleep 5
         sudo apt install wget -y
         wget "$jar_path" -O "$jar"
         if [ $? -eq 0 ]; then
@@ -61,7 +61,7 @@ if [ "$choice" = "S" ] || [ "$choice" = "s" ]; then
         echo -e "${CIANO}[BOT-Script]:${FIMCIANO} Máquina possui o JAR."
     fi
 
-    sleep 15
+    sleep 5
     clear
 
     # - - -
@@ -77,7 +77,7 @@ if [ "$choice" = "S" ] || [ "$choice" = "s" ]; then
         exit 1
     fi
 
-    sleep 15
+    sleep 5
     clear
 
     # - - -
@@ -92,7 +92,7 @@ if [ "$choice" = "S" ] || [ "$choice" = "s" ]; then
     #    exit 1
     #fi
 
-    #sleep 15
+    #sleep 5
     #clear
     # - - -
 
