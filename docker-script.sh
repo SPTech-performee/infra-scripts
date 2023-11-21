@@ -39,7 +39,7 @@ if [ "$choice" = "S" ] || [ "$choice" = "s" ]; then
     sleep 15
 
     echo -e "${CIANO}[BOT-Script]:${FIMCIANO} Executando script SQL"
-    sudo docker exec -i performee mysql -u root -p01231153 < /home/ubuntu/infra-scripts/Performee-script.sql
+    sudo docker exec -i performee mysql -u root -p 01231153 < /home/ubuntu/infra-scripts/Performee-script.sql
     echo -e "${VERDE}Script SQL executado.${FIMVERDE}"
 
     sleep 15
