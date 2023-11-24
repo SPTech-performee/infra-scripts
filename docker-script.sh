@@ -15,7 +15,7 @@ read choice
 if [ "$choice" = "S" ] || [ "$choice" = "s" ]; then
 
     echo -e "${CIANO}[BOT-Script]:${FIMCIANO} Iniciando instalação do docker"
-    sudo apt install docker.io
+    sudo apt install docker.io -y
     echo -e "${VERDE}Docker instalado.${FIMVERDE}"  
 
     sleep 5
