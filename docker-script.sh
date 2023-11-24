@@ -14,6 +14,7 @@ read choice
 
 if [ "$choice" = "S" ] || [ "$choice" = "s" ]; then
 
+    # Instalando docker e em seguida habilitando ele
     echo -e "${CIANO}[BOT-Script]:${FIMCIANO} Iniciando instalação do docker"
     sudo apt install docker.io -y
     echo -e "${VERDE}Docker instalado.${FIMVERDE}"  
@@ -27,24 +28,38 @@ if [ "$choice" = "S" ] || [ "$choice" = "s" ]; then
 
     sleep 5
 
-    echo -e "${CIANO}[BOT-Script]:${FIMCIANO} Baixando a imagem do MySQL 5.7"
-    sudo docker pull mysql:5.7
-    echo -e "${VERDE}Imagem SQL instalado.${FIMVERDE}"
+    # Verificando se a imagem SQL está instalada
+    if docker image inspect mysql:5.7 &> /dev/null; then
+        echo -e "${CIANO}[BOT-Script]:${FIMCIANO} Baixando a imagem do MySQL 5.7"
+        sudo docker pull mysql:5.7
+        echo -e "${VERDE}Imagem SQL instalado.${FIMVERDE}"
+    else
+        echo "A imagem MySQL 5.7 está instalada no Docker."
+    fi
+
+    # Verificando se existe o container performee
+    if docker ps -a --format '{{.Names}}' | grep -q '^performee$'; then
+        sudo docker exec -i performee mysql -u root -p001performee -e "DROP DATABASE IF EXISTS performee" # Caso exista o banco já criado -> delete
+        sudo docker rm -f performee
+        echo "O container performee foi removido."
+    fi
 
     # Criando e executando o container docker
     echo -e "${CIANO}[BOT-Script]:${FIMCIANO} Executando/criando container"
-    sudo docker run -d -p 3306:3306 --name performee -e "MYSQL_ROOT_PASSWORD=01231153" mysql:5.7
+    sudo docker run -d -p 3306:3306 --name performee -e "MYSQL_ROOT_PASSWORD=001performee" mysql:5.7
     echo -e "${VERDE}Container criado.${FIMVERDE}"
 
     sleep 5
 
+    # Executando script SQL
     echo -e "${CIANO}[BOT-Script]:${FIMCIANO} Executando script SQL"
-    sudo docker exec -i performee mysql -u root -p01231153 < ./Performee-script.sql
-    echo -e "${VERDE}Script SQL executado.${FIMVERDE}"
+    sudo docker exec -i performee mysql -u root -p001performee < ./Performee-script.sql
+    echo -e "${VERDE}Script SQL executado.${FIMVERDE} Iniciando processo de autorização para executar script java-python..."
 
-    sleep 5
+    sleep 10
     clear
 
+    # Dando permissão para o user sobre o arquivo java-python e em seguida o executando
     echo -e "${CIANO}[BOT-Script]:${FIMCIANO} Dando permissão para executar o script JAVA/PYTHON"
     chmod +x java-python-script.sh
     echo -e "${VERDE}Permissão concedida.${FIMVERDE}"

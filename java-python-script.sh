@@ -12,11 +12,11 @@ FIMVERMELHO='\033[0m'
 
 
 # URL AND APP JAR
-jar_path="https://github.com/SPTech-performee/performee-jar/blob/main/out/artifacts/java_maven_jar/java-maven.jar"
+jar_path="https://github.com/SPTech-performee/performee-jar/raw/main/out/artifacts/java_maven_jar/java-maven.jar"
 jar="java-maven.jar"
 
 # URL E APP PYTHON
-python_path="https://github.com/SPTech-performee/performee-gpu/blob/main/dist/GpuDados/GpuDados.exe"
+python_path="https://github.com/SPTech-performee/performee-gpu/raw/main/dist/GpuDados/GpuDados.exe"
 python="GpuDados.exe"
 
 echo -e "${CIANO}[BOT-Script]:${FIMCIANO} Olá! Este é um script de instalação automatizado para sua VM!"
@@ -86,8 +86,11 @@ if [ "$choice" = "S" ] || [ "$choice" = "s" ]; then
     sleep 5
     clear
 
+    sudo apt install gnome-terminal -y
+
+    # Executando JAR
     echo "Executando JAR"
-    java -jar "$jar"
+    gnome-terminal -- bash -c "java -jar \"$jar\"; echo 'Pressione Enter para executar o jar...'; read" &
     if [ $? -eq 0 ]; then
         echo -e "${VERDE}Executado com sucesso.${FIMVERDE}"
     else
@@ -95,13 +98,10 @@ if [ "$choice" = "S" ] || [ "$choice" = "s" ]; then
         exit 1
     fi
 
-    sleep 5
-    clear
-
-    # ABRIR UM NOVO TERMINAL E EXECUTAR O PYTHON
-    sudo apt install gnome-terminal
-    echo "Executando PYTHON"
-    gnome-terminal -- bash -c "exec $SHELL; sudo bash $python"
+    # Executando o PYTHON
+    echo "Executando Python"
+    sudo chmod +x $python
+    gnome-terminal -- bash -c "./$python; echo 'Pressione Enter para executar o python...'; read" &
     if [ $? -eq 0 ]; then
         echo -e "${VERDE}Executado com sucesso.${FIMVERDE}"
     else
@@ -109,9 +109,7 @@ if [ "$choice" = "S" ] || [ "$choice" = "s" ]; then
         exit 1
     fi
 
-    sleep 5
-    clear
-
+    wait
     echo -e "${CIANO}[BOT-Script]:${FIMCIANO} Fim do script."
 
 else
