@@ -12,9 +12,12 @@ FIMVERMELHO='\033[0m'
 
 
 # URL AND APP JAR
-# MUDAR PARA SUA VERSÂO / SEU JAR
-jar_path="caminho_executavel"
-jar="nome_executavel.jar"
+jar_path="https://github.com/SPTech-performee/performee-jar/blob/main/out/artifacts/java_maven_jar/java-maven.jar"
+jar="java-maven.jar"
+
+# URL E APP PYTHON
+python_path="https://github.com/SPTech-performee/performee-gpu/blob/main/dist/GpuDados/GpuDados.exe"
+python="GpuDados.exe"
 
 echo -e "${CIANO}[BOT-Script]:${FIMCIANO} Olá! Este é um script de instalação automatizado para sua VM!"
 echo -e "${CIANO}[BOT-Script]:${FIMCIANO} Este script irá instalar automaticamente o JAVA em sua máquina e uma aplicação JAVA para o monitoramento dos componentes de sua máquina..."
@@ -61,12 +64,27 @@ if [ "$choice" = "S" ] || [ "$choice" = "s" ]; then
         echo -e "${CIANO}[BOT-Script]:${FIMCIANO} Máquina possui o JAR."
     fi
 
+    # Verificar se o PYTHON está instalado
+    if [ ! -f "$python" ]; then
+        echo -e "${CIANO}[BOT-Script]:${FIMCIANO} Executável Python não encontrado. Iniciando sua instalação..."
+        sleep 5
+        sudo apt-get install python3.9 -y
+        sudo apt-get install python-pip -y
+        pip install pyinstaller
+        pip install cx_Freeze
+        wget "$python_path" -O "$python"
+        if [ $? -eq 0 ]; then
+            echo -e "${VERDE}Executável Python instalado.${FIMVERDE}"
+        else
+            echo -e "${VERMELHO}Erro ao instalar o executável Python.${FIMVERVELHO}"
+            exit 1
+        fi
+    else
+        echo -e "${CIANO}[BOT-Script]:${FIMCIANO} Máquina possui o executável Python."
+    fi
+
     sleep 5
     clear
-
-    # - - -
-    # INSERIR CONFIG PARA EXECUTÁVEL EM PYTHON AQUI
-    # - - -
 
     echo "Executando JAR"
     java -jar "$jar"
@@ -80,21 +98,19 @@ if [ "$choice" = "S" ] || [ "$choice" = "s" ]; then
     sleep 5
     clear
 
-    # - - -
     # ABRIR UM NOVO TERMINAL E EXECUTAR O PYTHON
-    #sudo apt install gnome-terminal
-    #echo "Executando PYTHON"
-    #gnome-terminal -- bash -c "exec $SHELL; aqui_vem_executavel_python"
-    #if [ $? -eq 0 ]; then
-    #    echo -e "${VERDE}Executado com sucesso.${FIMVERDE}"
-    #else
-    #    echo -e "${VERMELHO}Erro ao executar o PYTHON.${FIMVERMELHO}"
-    #    exit 1
-    #fi
+    sudo apt install gnome-terminal
+    echo "Executando PYTHON"
+    gnome-terminal -- bash -c "exec $SHELL; sudo bash $python"
+    if [ $? -eq 0 ]; then
+        echo -e "${VERDE}Executado com sucesso.${FIMVERDE}"
+    else
+        echo -e "${VERMELHO}Erro ao executar o PYTHON.${FIMVERMELHO}"
+        exit 1
+    fi
 
-    #sleep 5
-    #clear
-    # - - -
+    sleep 5
+    clear
 
     echo -e "${CIANO}[BOT-Script]:${FIMCIANO} Fim do script."
 
