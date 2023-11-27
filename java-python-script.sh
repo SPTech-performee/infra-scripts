@@ -12,8 +12,8 @@ FIMVERMELHO='\033[0m'
 
 
 # URL AND APP JAR
-jar_path="https://github.com/SPTech-performee/performee-jar/raw/main/out/artifacts/java_maven_jar/java-maven.jar"
-jar="java-maven.jar"
+jar_path="https://github.com/SPTech-performee/performee-jar/raw/main/out/artifacts/java_performee_jar/java-performee.jar"
+jar="java-performee.jar"
 
 # URL E APP PYTHON
 python_path="https://github.com/SPTech-performee/performee-gpu/raw/main/dist/GpuDados/GpuDados.exe"
@@ -90,7 +90,8 @@ if [ "$choice" = "S" ] || [ "$choice" = "s" ]; then
 
     # Executando JAR
     echo "Executando JAR"
-    gnome-terminal -- bash -c "java -jar \"$jar\"; echo 'Pressione Enter para executar o jar...'; read" &
+    sudo chmod +x $jar
+    gnome-terminal -- bash -c "java -jar \"$jar\"; echo e- 'Pressione Enter para executar o jar...'; read" &
     if [ $? -eq 0 ]; then
         echo -e "${VERDE}Executado com sucesso.${FIMVERDE}"
     else
@@ -98,10 +99,12 @@ if [ "$choice" = "S" ] || [ "$choice" = "s" ]; then
         exit 1
     fi
 
+    sleep 10
+
     # Executando o PYTHON
     echo "Executando Python"
     sudo chmod +x $python
-    gnome-terminal -- bash -c "./$python; echo 'Pressione Enter para executar o python...'; read" &
+    gnome-terminal -- bash -c "./$python; echo e- 'Pressione Enter para executar o python...'; read" &
     if [ $? -eq 0 ]; then
         echo -e "${VERDE}Executado com sucesso.${FIMVERDE}"
     else

@@ -153,10 +153,11 @@ insert into Usuario values
 (null, "Cleber Ferreira", "cleber@sptech.school", "cleber123", "12591913030", "Diretor Analytic and Development squad", 1, 2),
 (null, "Carolina Maria Socorro", "carol@sptech.school", "carol123", "37068246044", "Analista Junior", 1, 3);
 
+
 insert into UnidadeMedida values
-(null, "TB"),
-(null, "Ghz"),
-(null, "Mhz"),
-(null, "GB"),
-(null, "MB"),
-(null, "C°");
+('Ghz'),
+('Mhz'),
+('GB'),
+('MB'),
+('TB'),
+('C°');

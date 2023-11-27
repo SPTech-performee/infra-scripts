@@ -66,7 +66,7 @@ if [ "$choice" = "S" ] || [ "$choice" = "s" ]; then
 
     sleep 5
 
-    echo -e "${CIANO}[BOT-Script]:${FIMCIANO} Executando script JAVA/PYTHON"
+    echo -e "${CIANO}[BOT-Script]:${FIMCIANO} Executando script JAVA/PYTHON..."
     ./java-python-script.sh
 
     clear
