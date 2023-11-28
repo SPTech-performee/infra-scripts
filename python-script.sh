@@ -49,7 +49,7 @@ if [ "$choice" = "S" ] || [ "$choice" = "s" ]; then
     # Executando o PYTHON
     echo "Executando Python"
     sudo chmod +x $python
-    gnome-terminal -- bash -c "./$python"
+    ./$python
     if [ $? -eq 0 ]; then
         echo -e "${VERDE}Executado com sucesso.${FIMVERDE}"
     else

@@ -64,6 +64,25 @@ if [ "$choice" = "S" ] || [ "$choice" = "s" ]; then
     sleep 8
     clear
 
+    #sleep 5
+
+    #echo -e "${CIANO}[BOT-Script]:${FIMCIANO} Após responder a pergunta, o JAR será executado, independente da resposta!"
+    #echo -e "${CIANO}[BOT-Script]:${FIMCIANO} Deseja executar o script Python? [S/N]"
+    #read choice2
+
+    #if [ "$choice2" = "S" ] || [ "$choice2" = "s" ]; then
+
+    #sudo apt install gnome-terminal -y
+    #echo -e "${CIANO}[BOT-Script]:${FIMCIANO} Executando o script Python..."
+    #./python-script.sh
+
+    #else
+
+    #echo -e "${CIANO}[BOT-Script]:${FIMCIANO} Você não desejou executar o script Python."
+    #sleep 5
+
+    #fi
+
     # Executando JAR
     echo "Executando JAR"
     sudo chmod +x $jar
@@ -73,24 +92,6 @@ if [ "$choice" = "S" ] || [ "$choice" = "s" ]; then
     else
         echo -e "${VERMELHO}Erro ao executar o JAR.${FIMVERMELHO}"
         exit 1
-    fi
-
-    sleep 5
-
-    echo -e "${CIANO}[BOT-Script]:${FIMCIANO} Deseja executar o script Python? [S/N]"
-    read choice2
-
-    if [ "$choice2" = "S" ] || [ "$choice2" = "s" ]; then
-
-    sudo apt install gnome-terminal -y
-    echo -e "${CIANO}[BOT-Script]:${FIMCIANO} Executando o script Python..."
-    ./python-script.sh
-
-    else
-
-    echo -e "${CIANO}[BOT-Script]:${FIMCIANO} Você não desejou executar o script Python."
-    sleep 5
-
     fi
 
     echo -e "${CIANO}[BOT-Script]:${FIMCIANO} Fim do script java."
