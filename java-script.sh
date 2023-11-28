@@ -12,12 +12,9 @@ FIMVERMELHO='\033[0m'
 
 
 # URL AND APP JAR
-jar_path="https://github.com/SPTech-performee/performee-jar/raw/main/out/artifacts/java_performee_jar/java-performee.jar"
-jar="java-performee.jar"
+jar_path="https://github.com/SPTech-performee/performee-jar/raw/main/target/java-performee-1.0-SNAPSHOT-jar-with-dependencies.jar"
+jar="java-performee-1.0-SNAPSHOT-jar-with-dependencies.jar"
 
-# URL E APP PYTHON
-python_path="https://github.com/SPTech-performee/performee-gpu/raw/main/dist/GpuDados/GpuDados.exe"
-python="GpuDados.exe"
 
 echo -e "${CIANO}[BOT-Script]:${FIMCIANO} Olá! Este é um script de instalação automatizado para sua VM!"
 echo -e "${CIANO}[BOT-Script]:${FIMCIANO} Este script irá instalar automaticamente o JAVA em sua máquina e uma aplicação JAVA para o monitoramento dos componentes de sua máquina..."
@@ -45,7 +42,7 @@ if [ "$choice" = "S" ] || [ "$choice" = "s" ]; then
         echo -e "${CIANO}[BOT-Script]:${FIMCIANO} Máquina possui o JAVA."
     fi
 
-    sleep 5
+    sleep 8
     clear
 
     # Verificar se o JAR está instalado
@@ -64,34 +61,13 @@ if [ "$choice" = "S" ] || [ "$choice" = "s" ]; then
         echo -e "${CIANO}[BOT-Script]:${FIMCIANO} Máquina possui o JAR."
     fi
 
-    # Verificar se o PYTHON está instalado
-    if [ ! -f "$python" ]; then
-        echo -e "${CIANO}[BOT-Script]:${FIMCIANO} Executável Python não encontrado. Iniciando sua instalação..."
-        sleep 5
-        sudo apt-get install python3.9 -y
-        sudo apt-get install python-pip -y
-        pip install pyinstaller
-        pip install cx_Freeze
-        wget "$python_path" -O "$python"
-        if [ $? -eq 0 ]; then
-            echo -e "${VERDE}Executável Python instalado.${FIMVERDE}"
-        else
-            echo -e "${VERMELHO}Erro ao instalar o executável Python.${FIMVERVELHO}"
-            exit 1
-        fi
-    else
-        echo -e "${CIANO}[BOT-Script]:${FIMCIANO} Máquina possui o executável Python."
-    fi
-
-    sleep 5
+    sleep 8
     clear
-
-    sudo apt install gnome-terminal -y
 
     # Executando JAR
     echo "Executando JAR"
     sudo chmod +x $jar
-    gnome-terminal -- bash -c "java -jar \"$jar\"; echo e- 'Pressione Enter para executar o jar...'; read" &
+    java -jar $jar
     if [ $? -eq 0 ]; then
         echo -e "${VERDE}Executado com sucesso.${FIMVERDE}"
     else
@@ -99,23 +75,27 @@ if [ "$choice" = "S" ] || [ "$choice" = "s" ]; then
         exit 1
     fi
 
-    sleep 10
+    sleep 5
 
-    # Executando o PYTHON
-    echo "Executando Python"
-    sudo chmod +x $python
-    gnome-terminal -- bash -c "./$python; echo e- 'Pressione Enter para executar o python...'; read" &
-    if [ $? -eq 0 ]; then
-        echo -e "${VERDE}Executado com sucesso.${FIMVERDE}"
+    echo -e "${CIANO}[BOT-Script]:${FIMCIANO} Deseja executar o script Python? [S/N]"
+    read choice2
+
+    if [ "$choice2" = "S" ] || [ "$choice2" = "s" ]; then
+
+    sudo apt install gnome-terminal -y
+    echo -e "${CIANO}[BOT-Script]:${FIMCIANO} Executando o script Python..."
+    ./python-script.sh
+
     else
-        echo -e "${VERMELHO}Erro ao executar o PYTHON.${FIMVERMELHO}"
-        exit 1
+
+    echo -e "${CIANO}[BOT-Script]:${FIMCIANO} Você não desejou executar o script Python."
+    sleep 5
+
     fi
 
-    wait
-    echo -e "${CIANO}[BOT-Script]:${FIMCIANO} Fim do script."
+    echo -e "${CIANO}[BOT-Script]:${FIMCIANO} Fim do script java."
 
 else
-    echo -e "${CIANO}[BOT-Script]:${FIMCIANO} Você não concordou com a instalação. Saindo..."
+    echo -e "${CIANO}[BOT-Script]:${FIMCIANO} Você não concordou com a instalação java. Saindo..."
     exit 0
 fi

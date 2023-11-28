@@ -56,22 +56,23 @@ if [ "$choice" = "S" ] || [ "$choice" = "s" ]; then
     sudo docker exec -i performee mysql -u root -p001performee < ./Performee-script.sql
     echo -e "${VERDE}Script SQL executado.${FIMVERDE} Iniciando processo de autorização para executar script java-python..."
 
-    sleep 10
+    sleep 5
     clear
 
-    # Dando permissão para o user sobre o arquivo java-python e em seguida o executando
-    echo -e "${CIANO}[BOT-Script]:${FIMCIANO} Dando permissão para executar o script JAVA/PYTHON"
-    chmod +x java-python-script.sh
+    # Dando permissão para o user sobre o arquivo java e python e em seguida o executando o arquivo java
+    echo -e "${CIANO}[BOT-Script]:${FIMCIANO} Dando permissão para executar o script Java e Python"
+    chmod +x java-script.sh
+    chmod +x python-script.sh
     echo -e "${VERDE}Permissão concedida.${FIMVERDE}"
 
     sleep 5
 
-    echo -e "${CIANO}[BOT-Script]:${FIMCIANO} Executando script JAVA/PYTHON..."
-    ./java-python-script.sh
+    echo -e "${CIANO}[BOT-Script]:${FIMCIANO} Executando script java..."
+    ./java-script.sh
 
     clear
 else
-    echo -e "${CIANO}[BOT-Script]:${FIMCIANO} Você não concordou com a instalação. Saindo..."
+    echo -e "${CIANO}[BOT-Script]:${FIMCIANO} Você não concordou com a instalação docker. Saindo..."
     exit 0
 
 fi
