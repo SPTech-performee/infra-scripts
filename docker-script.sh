@@ -19,12 +19,21 @@ if [ "$choice" = "S" ] || [ "$choice" = "s" ]; then
     sudo apt install docker.io -y
     echo -e "${VERDE}Docker instalado.${FIMVERDE}"  
 
-    sleep 5
+    sleep 15
 
     echo -e "${CIANO}[BOT-Script]:${FIMCIANO} Iniciando serviço do docker"
     sudo systemctl start docker
     sudo systemctl enable docker
     echo -e "${VERDE}Docker iniciado.${FIMVERDE}"
+
+    sleep 15
+
+    # Verificando se existe o container performee
+    if docker ps -a --format '{{.Names}}' | grep -q '^performee$'; then
+        sudo docker exec -i performee mysql -u root -p001performee -e "DROP DATABASE IF EXISTS performee" # Caso exista o banco já criado -> delete
+        sudo docker rm -f performee
+        echo "O container performee foi removido."
+    fi
 
     sleep 5
 
@@ -37,26 +46,19 @@ if [ "$choice" = "S" ] || [ "$choice" = "s" ]; then
         echo "A imagem MySQL 5.7 está instalada no Docker."
     fi
 
-    # Verificando se existe o container performee
-    if docker ps -a --format '{{.Names}}' | grep -q '^performee$'; then
-        sudo docker exec -i performee mysql -u root -p001performee -e "DROP DATABASE IF EXISTS performee" # Caso exista o banco já criado -> delete
-        sudo docker rm -f performee
-        echo "O container performee foi removido."
-    fi
-
     # Criando e executando o container docker
     echo -e "${CIANO}[BOT-Script]:${FIMCIANO} Executando/criando container"
     sudo docker run -d -p 3306:3306 --name performee -e "MYSQL_ROOT_PASSWORD=001performee" mysql:5.7
     echo -e "${VERDE}Container criado.${FIMVERDE}"
 
-    sleep 5
+    sleep 15
 
     # Executando script SQL
     echo -e "${CIANO}[BOT-Script]:${FIMCIANO} Executando script SQL"
-    sudo docker exec -i performee mysql -u root -p001performee < ./Performee-script.sql
+    sudo docker exec -i performee mysql -u root -p001performee -h localhost < /home/ubuntu/infra-scripts/Performee-script.sql
     echo -e "${VERDE}Script SQL executado.${FIMVERDE} Iniciando processo de autorização para executar script java-python..."
 
-    sleep 5
+    sleep 15
     clear
 
     # Dando permissão para o user sobre o arquivo java e python e em seguida o executando o arquivo java
