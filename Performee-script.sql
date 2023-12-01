@@ -155,9 +155,9 @@ insert into Usuario values
 
 
 insert into UnidadeMedida values
-('Ghz'),
-('Mhz'),
-('GB'),
-('MB'),
-('TB'),
-('C°');
+(null, 'Ghz'),
+(null, 'Mhz'),
+(null, 'GB'),
+(null, 'MB'),
+(null, 'TB'),
+(null, 'C°');
