@@ -28,4 +28,4 @@ Visualize o executável Python Performee no seguite link:
 
 #
 
-- 📌 Em andamento.
+- 📌 Finalizado.

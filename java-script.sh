@@ -12,7 +12,7 @@ FIMVERMELHO='\033[0m'
 
 
 # URL AND APP JAR
-jar_path="https://github.com/SPTech-performee/performee-jar/raw/main/target/java-performee-1.0-SNAPSHOT-jar-with-dependencies.jar"
+# jar_path="https://github.com/SPTech-performee/performee-jar/raw/main/target/java-performee-1.0-SNAPSHOT-jar-with-dependencies.jar"
 jar="java-performee-1.0-SNAPSHOT-jar-with-dependencies.jar"
 
 
@@ -42,27 +42,29 @@ if [ "$choice" = "S" ] || [ "$choice" = "s" ]; then
         echo -e "${CIANO}[BOT-Script]:${FIMCIANO} Máquina possui o JAVA."
     fi
 
+    echo -e "${VERDE}Buscando JAR para execução...${FIMVERDE}"
+
     sleep 8
     clear
 
     # Verificar se o JAR está instalado
-    if [ ! -f "$jar" ]; then
-        echo -e "${CIANO}[BOT-Script]:${FIMCIANO} JAR não encontrado. Iniciando sua instalação..."
-        sleep 5
-        sudo apt install wget -y
-        wget "$jar_path" -O "$jar"
-        if [ $? -eq 0 ]; then
-            echo -e "${VERDE}JAR instalado.${FIMVERDE}"
-        else
-            echo -e "${VERMELHO}Erro ao instalar o JAR.${FIMVERVELHO}"
-            exit 1
-        fi
-    else
-        echo -e "${CIANO}[BOT-Script]:${FIMCIANO} Máquina possui o JAR."
-    fi
+    # if [ ! -f "$jar" ]; then
+    #    echo -e "${CIANO}[BOT-Script]:${FIMCIANO} JAR não encontrado. Iniciando sua instalação..."
+    #    sleep 5
+    #    sudo apt install wget -y
+    #    wget "$jar_path" -O "$jar"
+    #    if [ $? -eq 0 ]; then
+    #        echo -e "${VERDE}JAR instalado.${FIMVERDE}"
+    #    else
+    #        echo -e "${VERMELHO}Erro ao instalar o JAR.${FIMVERVELHO}"
+    #        exit 1
+    #    fi
+    # else
+    #    echo -e "${CIANO}[BOT-Script]:${FIMCIANO} Máquina possui o JAR."
+    # fi
 
-    sleep 8
-    clear
+    # sleep 8
+    # clear
 
     #sleep 5
 
