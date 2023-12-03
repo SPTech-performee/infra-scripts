@@ -88,7 +88,7 @@ if [ "$choice" = "S" ] || [ "$choice" = "s" ]; then
     # Executando JAR
     echo "Executando JAR"
     sudo chmod +x $jar
-    java -jar $jar
+    sudo java -jar $jar
     if [ $? -eq 0 ]; then
         echo -e "${VERDE}Executado com sucesso.${FIMVERDE}"
     else
